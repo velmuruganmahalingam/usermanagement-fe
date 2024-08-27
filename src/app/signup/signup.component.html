@@ -1,0 +1,62 @@
+<div class="signup-container">
+  <form (ngSubmit)="onSubmit()" [formGroup]="signupForm">
+    <h2>Sign Up</h2>
+    <div class="form-group">
+      <label for="firstName">First Name:</label><br/>
+      <input id="firstName" formControlName="firstName" class="form-control">
+      <div *ngIf="signupForm.get('firstName')?.invalid && (signupForm.get('firstName')?.dirty || signupForm.get('firstName')?.touched)" class="error-message">
+        <small *ngIf="signupForm.get('firstName')?.errors?.['required']">First Name is required.</small>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="lastName">Last Name:</label><br/>
+      <input id="lastName" formControlName="lastName" class="form-control">
+      <div *ngIf="signupForm.get('lastName')?.invalid && (signupForm.get('lastName')?.dirty || signupForm.get('lastName')?.touched)" class="error-message">
+        <small *ngIf="signupForm.get('lastName')?.errors?.['required']">Last Name is required.</small>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="email">Email:</label><br/>
+      <input id="email" formControlName="email" class="form-control">
+      <div *ngIf="signupForm.get('email')?.invalid && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)" class="error-message">
+        <small *ngIf="signupForm.get('email')?.errors?.['required']">Email is required.</small>
+        <small *ngIf="signupForm.get('email')?.errors?.['email']">Invalid email format.</small>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="mobile">Mobile:</label><br/>
+      <input id="mobile" formControlName="mobile" class="form-control">
+      <div *ngIf="signupForm.get('mobile')?.invalid && (signupForm.get('mobile')?.dirty || signupForm.get('mobile')?.touched)" class="error-message">
+        <small *ngIf="signupForm.get('mobile')?.errors?.['required']">Mobile number is required.</small>
+        <small *ngIf="signupForm.get('mobile')?.errors?.['pattern']">Invalid mobile number format.</small>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="role">Role:</label><br/>
+      <select id="role" formControlName="role" class="form-control" style="width: 98%;">
+        <option value="">Select Role</option>
+        <option value="User">User</option>
+        <option value="Admin">Admin</option>
+        <option value="Guest">Guest</option>
+      </select>
+      <div *ngIf="signupForm.get('role')?.invalid && (signupForm.get('role')?.dirty || signupForm.get('role')?.touched)" class="error-message">
+        <small *ngIf="signupForm.get('role')?.errors?.['required']">Role is required.</small>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="password">Password:</label><br/>
+      <input type="password" id="password" formControlName="password" class="form-control">
+      <div *ngIf="signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)" class="error-message">
+        <small *ngIf="signupForm.get('password')?.errors?.['required']">Password is required.</small>
+        <small *ngIf="signupForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+      </div>
+    </div>
+    <button type="submit">Sign Up</button>
+    <p>Already have an account? <a (click)="redirectToLogin()">Login</a></p>
+  </form>
+</div>

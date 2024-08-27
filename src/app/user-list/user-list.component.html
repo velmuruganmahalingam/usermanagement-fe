@@ -1,0 +1,40 @@
+<div class="container">
+  <button (click)="logout()" class="logout-button">Logout</button>
+
+  <form [formGroup]="filtersForm" class="filter-form">
+    <input formControlName="search" placeholder="Search" class="search-input">
+    <select formControlName="role" class="role-select">
+      <option value="">All</option>
+      <option value="User">User</option>
+      <option value="Admin">Admin</option>
+      <option value="Guest">Guest</option>
+    </select>
+  </form>
+
+  <ul class="user-list">
+    <li *ngFor="let user of users" class="user-item">
+      {{ user.firstName }} {{ user.lastName }} - {{ user.role }}
+    </li>
+  </ul>
+
+  <table class="user-table">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of filteredUsers">
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.mobile }}</td>
+        <td>{{ user.role }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

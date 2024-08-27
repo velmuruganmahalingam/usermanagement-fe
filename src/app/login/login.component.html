@@ -1,0 +1,24 @@
+<div class="login-container">
+  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+    <h2>Login</h2>
+    <div>
+      <label for="email">Email:</label><br/>
+      <input id="email" formControlName="email">
+      <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+        <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</small>
+        <small *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email format.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="password">Password:</label><br/>
+      <input type="password" id="password" formControlName="password">
+      <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+        <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</small>
+      </div>
+    </div>
+    <button type="submit">Login</button>
+    <p>Don't have an account? <a (click)="redirectToSignup()" class="reg">Sign Up</a></p>
+  </form>
+  <app-snackbar *ngIf="showSnackbar" [message]="snackbarMessage"></app-snackbar>
+</div>
